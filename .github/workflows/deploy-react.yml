@@ -1,26 +1,32 @@
-name : Deploy react application in BeanStalk
-on :
-    push:
-        branches:
-            - "main"
+name: Deploy React Application to Beanstalk
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-    deploy: 
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout source code
-          uses: actions/checkout@v2
+  deploy:
+    runs-on: ubuntu-latest
 
-        - name: Generate deployment package
-          run: zip -r deploy.zip . -x '*.git*'
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
 
-        - name: Deploy to EB
-          uses: einaregilsson/beanstalk-deploy@v21
-          with:
-            aws_access_key: ${{ secrets.AWS_ADMIN_ACCESS_KEY_ID }}
-            aws_secret_key: ${{ secrets.AWS_ADMIN_SECRET_ACCESS_KEY_ID }}
-            application_name: shop-safely-now
-            environment_name: Shop-safely-now-env-1
-            version_label: ${{ github.sha }}
-            existing_bucket_name: elasticbeanstalk-us-east-1-315431037525
-            region: us-east-1
-            deployment_package: deploy.zip
+      - name: Generate deployment package
+        run: |
+          npm install # If needed, install Node.js dependencies
+          npm run build # Build your React app
+          zip -r deploy.zip . -x '*.git*' # Create a deployment package
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ADMIN_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_ADMIN_SECRET_ACCESS_KEY_ID }}
+          application_name: shop-safely-now # Replace with your Beanstalk application name
+          environment_name: Shop-safely-now-env-1 # Replace with your Beanstalk environment name
+          version_label: ${{ github.sha }}
+          existing_bucket_name: elasticbeanstalk-us-east-1-315431037525 # Replace with your S3 bucket name
+          region: us-east-1 # Replace with your AWS region
+          deployment_package: deploy.zip

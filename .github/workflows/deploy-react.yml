@@ -21,7 +21,7 @@ jobs:
             application_name: shop-safely-now
             environment_name: Shop-safely-now-env-1
             version_label: ${{ github.sha }}
-            existing_bucket_name: elasticbeanstalk-us-east-1-354408555228
+            existing_bucket_name: elasticbeanstalk-us-east-1-315431037525
             region: us-east-1
             deployment_package: deploy.zip
             use_existing_version_if_available: true

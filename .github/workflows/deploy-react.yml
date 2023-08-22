@@ -18,8 +18,8 @@ jobs:
           with:
             aws_access_key: ${{ secrets.AWS_ADMIN_ACCESS_KEY_ID }}
             aws_secret_key: ${{ secrets.AWS_ADMIN_SECRET_ACCESS_KEY_ID }}
-            application_name: docker-react
-            environment_name: Dockerreact-env
+            application_name: shop-safely-now
+            environment_name: Shop-safely-now-env-1
             version_label: ${{ github.sha }}
             existing_bucket_name: elasticbeanstalk-us-east-1-315431037525
             region: us-east-1

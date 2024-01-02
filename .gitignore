@@ -24,6 +24,5 @@ yarn-error.log*
 
 
 /Jenkinsfile
-/Dockerfile
 Jenkinsfile
-Dockerfile
+

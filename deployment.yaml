@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-safely-now-deployment
+spec:
+  replicas: 3  # Set the desired number of replicas
+  selector:
+    matchLabels:
+      app: shop-safely-now
+  template:
+    metadata:
+      labels:
+        app: shop-safely-now
+    spec:
+      containers:
+      - name: shop-safely-now
+        image: nahid0002/shop-safely-now:latest  # Replace with your Docker image
+        ports:
+        - containerPort: 3000  # Replace with the port your app is listening on
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shop-safely-now-service
+spec:
+  selector:
+    app: shop-safely-now
+  ports:
+    - protocol: TCP
+      port: 80  # Port exposed by the service
+      targetPort: 3000  # Port your app is listening on in the pods
+  type: LoadBalancer  # Use LoadBalancer for exposing externally (if supported)

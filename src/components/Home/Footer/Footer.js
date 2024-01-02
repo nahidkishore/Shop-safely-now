@@ -53,6 +53,8 @@ const Footer = () => {
       </div>
       <div className="text-center pb-2">
         <p>© Copyright by Nahidul Islam {new Date().getFullYear()}</p>
+        <p>Linkedin: <a href="" target="blank" >https://www.linkedin.com/in/nahid099/</a>
+        </p>
       </div>
     </footer>
   );

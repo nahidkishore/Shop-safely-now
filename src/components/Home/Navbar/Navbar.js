@@ -11,7 +11,7 @@ const Navbar = () => {
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container py-2">
             <Link to="/" className="brand" style={{ textDecoration: "none" }}>
-              Shop safely Now
+              Shop Safely Now
             </Link>
             <button
               class="navbar-toggler"

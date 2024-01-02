@@ -9,9 +9,9 @@ const Banner = () => {
         <h2>Welcome To <span className='text-danger'>Shop safely Now</span></h2>
         <h4 className='mt-3 mb-3'>Choose Your Favorite One</h4>
         <h1>Best product is waiting for you</h1><br/>
-        </div>
        
-  
+        </div>
+      
      </div>
    </section>
 );

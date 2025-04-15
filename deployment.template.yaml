@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-safely-now-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: shop-safely-now
+  template:
+    metadata:
+      labels:
+        app: shop-safely-now
+    spec:
+      containers:
+      - name: shop-safely-now
+        image: ${IMAGE_NAME}
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shop-safely-now-service
+spec:
+  selector:
+    app: shop-safely-now
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer

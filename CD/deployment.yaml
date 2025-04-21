@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: shop-safely-now
-        image: latest
+        image: ${IMAGE_NAME}
         ports:
         - containerPort: 3000
 ---
@@ -29,4 +29,5 @@ spec:
   ports:
     - port: 80
       targetPort: 3000
+      nodePort: 30080
   type: LoadBalancer

@@ -30,4 +30,7 @@ spec:
     - port: 80
       targetPort: 3000
       nodePort: 30080
-  type: LoadBalancer
+  type: NodePort
+  
+  # for Kubeadm (bare metal) # type: NodePort
+  # for Cloud Managed (EKS/GKE/AKS) # type: LoadBalancer

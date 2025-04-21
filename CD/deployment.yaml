@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: shop-safely-now
-        image: latest
+        image: nahid0002/shop-safely-now:latest
         ports:
         - containerPort: 3000
 ---

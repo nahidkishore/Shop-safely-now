@@ -1,0 +1,23 @@
+deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Generate deployment package
+        run: zip -r -j deploy.zip ./dev/* -x '*.git*'
+
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ADMIN_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_ADMIN_SECRET_ACCESS_KEY_ID }}
+          application_name: shop-safely-now
+          environment_name: Shop-safely-now-env-1
+          version_label: ${{ github.sha }}
+          existing_bucket_name: elasticbeanstalk-us-east-1-315431037525
+          region: us-east-1
+          deployment_package: deploy.zip
+          use_existing_version_if_available: true
